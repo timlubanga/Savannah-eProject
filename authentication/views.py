@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from authentication.serializers import UserRegistrationSerializer
+from authentication.serializers import UserRegistrationSerializer, EmailLoginSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework import generics
@@ -16,3 +16,13 @@ class UserRegistrationView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status.HTTP_201_CREATED)
+
+
+class EmailLoginView(generics.GenericAPIView):
+    serializer_class = EmailLoginSerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response(user, status.HTTP_200_OK)
