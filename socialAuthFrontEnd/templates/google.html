@@ -1,0 +1,42 @@
+<meta name="google-signin-client_id" content="673408718846-6of08hh6tmvi3gnrb4l0megcdf7vlrng.apps.googleusercontent.com">
+</head>
+<body>
+  <div id="my-signin2"></div>
+  <div id='message' style="margin: 10px; color: darkgoldenrod;">Welcome</div>
+  <a href="#" onclick="signOut();" style= "text-decoration: none; color: white; font-weight:600; padding: 10px; margin-top: 5px; background-color: red;">Sign out</a>
+  <script>
+    function onSuccess(googleUser) {
+      var text='Logged in as: ' + googleUser.getBasicProfile().getName();
+      document.getElementById('message').innerText=text
+      console.log('ID', +googleUser.getBasicProfile().getId())
+      console.log('ID_TOken:' + googleUser.getAuthResponse().id_token)
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+
+    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      document.getElementById('message').innerText=text='User signed out.'
+    });
+  }
+
+ 
+    function renderButton() {
+     gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      }) 
+    }
+  
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>

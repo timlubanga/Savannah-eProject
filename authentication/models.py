@@ -51,7 +51,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         max_length=255, blank=False,
         null=False, default=AUTH_PROVIDERS.get('email'))
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'email'
 
     objects = UserAccountManager()
 

@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from authentication.urls import authurlpatterns
-
+from socialAuthFrontEnd.urls import googleurlpatterns
+from socialAuth.urls import socialAuthurls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('account/', include(authurlpatterns))
+    path('account/', include(authurlpatterns)),
+    path('googlelogin/', include(googleurlpatterns)),
+    path('socialAuth/', include(socialAuthurls))
 ]
