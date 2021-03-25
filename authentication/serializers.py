@@ -9,11 +9,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     confirm_password = serializers.CharField(
         style={'input_type': 'password'}, write_only=True)
     tokens = serializers.SerializerMethodField()
-    random = serializers.ReadOnlyField()
 
     class Meta:
         model = UserAccount
-        fields = ["email", "username", "password", "random",
+        fields = ["email", "username", "password",
                   "confirm_password", "tokens"]
         extra_kwargs = {'password': {'write_only': True}}
 
@@ -36,22 +35,27 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return tokens
 
 
-class EmailLoginSerializer(serializers.Serializer):
-    username = serializers.CharField()
-    password = serializers.CharField()
+class EmailLoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = ["username", "password"]
+        extra_kwargs = {'password': {'style': {'input_type': 'password'}}}
 
-    def create(self, validated_data):
-
-        login_username = validated_data.get('username', None)
+    def save(self):
+        login_username = self.validated_data.get('username', None)
         print(login_username)
-        login_password = validated_data.get("password", None)
-        user = authenticate(**validated_data)
+        login_password = self.validated_data.get("password", None)
+        user = authenticate(username=login_username, password=login_password)
 
         if not user:
             raise serializers.ValidationError(
                 "Please provide correct username or password")
         tokens = user.tokens()
-        return {"tokens": tokens}
+        return {"tokens": tokens,
+                "email": user.email,
+
+
+                }
 
     def validate(self, attrs):
         return attrs
