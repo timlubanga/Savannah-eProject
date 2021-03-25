@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from socialAuth.utils import google, facebook, twitter
+from socialAuth.utils import google, facebook
 from socialAuth.utils.register import register_social_user
 import os
 from rest_framework.exceptions import AuthenticationFailed
@@ -11,8 +11,9 @@ class FacebookSocialAuthSerializer(serializers.Serializer):
 
     def validate_auth_token(self, auth_token):
         user_data = facebook.Facebook.validate(auth_token)
+        
 
-        try:
+        if user_data["email"]:
             user_id = user_data['id']
             email = user_data['email']
             name = user_data['name']
@@ -23,8 +24,8 @@ class FacebookSocialAuthSerializer(serializers.Serializer):
                 email=email,
                 name=name
             )
-        except Exception as identifier:
 
+        else:
             raise serializers.ValidationError(
                 'The token  is invalid or expired. Please login again.'
             )

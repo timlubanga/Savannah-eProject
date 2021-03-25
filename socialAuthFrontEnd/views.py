@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def googleLogin(request):
     return render(request, 'google.html', context={})
+
+
+def facebookLogin(request):
+    return render(request, 'facebook.html', context={})

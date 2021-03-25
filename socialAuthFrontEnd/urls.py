@@ -1,8 +1,10 @@
 
 from django.urls import path
-from socialAuthFrontEnd.views import googleLogin
+from socialAuthFrontEnd.views import googleLogin, facebookLogin
 
 
 googleurlpatterns = [
-    path('', googleLogin)
+    path('google', googleLogin),
+    path('facebook', facebookLogin)
+
 ]

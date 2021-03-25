@@ -22,6 +22,6 @@ from socialAuth.urls import socialAuthurls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include(authurlpatterns)),
-    path('googlelogin/', include(googleurlpatterns)),
+    path('socialmedia/', include(googleurlpatterns)),
     path('socialAuth/', include(socialAuthurls))
 ]
