@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'socialAuth',
+    'orders',
     'socialAuthFrontEnd',
     'rest_framework',
 ]
