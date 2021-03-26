@@ -18,10 +18,12 @@ from django.urls import path, include
 from authentication.urls import authurlpatterns
 from socialAuthFrontEnd.urls import googleurlpatterns
 from socialAuth.urls import socialAuthurls
-
+from orders.urls import urlsorder, urlcustomers
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include(authurlpatterns)),
     path('socialmedia/', include(googleurlpatterns)),
-    path('socialAuth/', include(socialAuthurls))
+    path('socialAuth/', include(socialAuthurls)),
+    path('orders/', include(urlsorder)),
+     path('customers/', include(urlsorder)),
 ]
