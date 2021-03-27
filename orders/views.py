@@ -5,6 +5,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 
 class CustomerViewSet(ModelViewSet):
@@ -18,6 +19,12 @@ class UpdateCustomerPhoneNumberView(generics.GenericAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        data = get_object_or_404(
+            Customer, customer_id=request.user.customer.customer_id)
+        serializer = CustomerSerializer(data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def patch(self, request):
         customer = request.user.customer

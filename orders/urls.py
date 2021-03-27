@@ -14,4 +14,4 @@ urlsorder = [
 
 
 urlscustomerupdate = [
-    path('updateMe/', UpdateCustomerPhoneNumberView.as_view())]
+    path('Me/', UpdateCustomerPhoneNumberView.as_view())]
