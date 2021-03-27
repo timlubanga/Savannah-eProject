@@ -4,6 +4,7 @@ import os
 import random
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth import get_user_model
+from orders.customer import createCustomer
 
 User = get_user_model()
 
@@ -30,7 +31,8 @@ def register_social_user(provider, user_id, email, name):
                 'tokens': registered_user.tokens()}
 
         else:
-            raise AuthenticationFailed( 'Please continue your login using ' + filtered_user_by_email[0].auth_provider)
+            raise AuthenticationFailed(
+                'Please continue your login using ' + filtered_user_by_email[0].auth_provider)
 
     else:
         user = {
@@ -39,7 +41,8 @@ def register_social_user(provider, user_id, email, name):
         user = User.objects.create_user(**user)
         user.is_verified = True
         user.auth_provider = provider
-        user.save()
+        user = user.save()
+        createCustomer(user=user)
 
         new_user = authenticate(
             email=email, password=os.environ.get('SECRET_KEY'))

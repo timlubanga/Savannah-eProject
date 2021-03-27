@@ -5,6 +5,7 @@ import os
 from rest_framework.exceptions import AuthenticationFailed
 
 
+
 class FacebookSocialAuthSerializer(serializers.Serializer):
     """Handles serialization of facebook related data"""
     auth_token = serializers.CharField()
