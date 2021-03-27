@@ -14,6 +14,20 @@ class CustomerViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
+class UpdateCustomerPhoneNumberView(generics.GenericAPIView):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request):
+        customer = request.user.customer
+        data = request.data
+        serializer = CustomerSerializer(customer, data=data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+
+
 class OrderCreateandListView(generics.ListCreateAPIView):
 
     serializer_class = OrderSerializer

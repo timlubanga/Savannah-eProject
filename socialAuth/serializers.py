@@ -11,7 +11,6 @@ class FacebookSocialAuthSerializer(serializers.Serializer):
 
     def validate_auth_token(self, auth_token):
         user_data = facebook.Facebook.validate(auth_token)
-        
 
         if user_data["email"]:
             user_id = user_data['id']
@@ -36,6 +35,7 @@ class GoogleSocialAuthSerializer(serializers.Serializer):
 
     def validate_auth_token(self, auth_token):
         user_data = google.Google.validate(auth_token)
+        print("token", user_data)
         try:
             user_data['sub']
         except:

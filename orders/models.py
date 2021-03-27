@@ -15,7 +15,7 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
-        return str(self.account.email)
+        return self.account.email + "---"+ str(self.customer_id)
 
 
 class Order(models.Model):
