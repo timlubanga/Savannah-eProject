@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'orders',
     'socialAuthFrontEnd',
     'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
