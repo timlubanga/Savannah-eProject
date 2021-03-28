@@ -35,7 +35,7 @@ class UpdateCustomerPhoneNumberView(generics.GenericAPIView):
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 
-class OrderCreateandListView(generics.ListCreateAPIView):
+class OrderCreateandListView(generics.GenericAPIView):
 
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]

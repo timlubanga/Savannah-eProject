@@ -1,7 +1,12 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 import uuid
-# Create your models here.
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from orders.sms import sendOrderSms
+from orders.twillionSms import twilioSms
+
 
 UserAccount = get_user_model()
 
@@ -12,10 +17,10 @@ class Customer(models.Model):
                                    default=uuid.uuid4(),
                                    unique=True,
                                    editable=False)
-    phone_number = models.CharField(max_length=300, null=True, blank=True)
+    phone_number = models.CharField(max_length=300, null=True, blank=True, default="+254714568338")
 
     def __str__(self):
-        return self.account.email + "---"+ str(self.customer_id)
+        return self.account.email + "---" + str(self.customer_id)
 
 
 class Order(models.Model):
@@ -26,3 +31,10 @@ class Order(models.Model):
 
     def __str__(self):
         return self.item
+
+
+@receiver(post_save, sender=Order)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        if instance.customer.phone_number:
+            twilioSms(instance)
