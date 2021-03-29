@@ -7,6 +7,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 
+from drf_yasg.utils import swagger_auto_schema
+from django.utils.decorators import method_decorator
+from drf_yasg import openapi
+
+account = openapi.Parameter(
+    "account", nullable=True, type=openapi.TYPE_OBJECT, in_=openapi.IN_BODY)
+
 
 class CustomerViewSet(ModelViewSet):
 
@@ -26,6 +33,7 @@ class UpdateCustomerPhoneNumberView(generics.GenericAPIView):
         serializer = CustomerSerializer(data)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+    @swagger_auto_schema(request_body=openapi.Schema(type=openapi.TYPE_STRING, required="phone_number"))
     def patch(self, request):
         customer = request.user.customer
         data = request.data
