@@ -16,6 +16,6 @@
 
 7. Run the django development server using python manage.py runserver
 
-# Testing
+# App Testing
 
 Run the tests by running python manage.py tests
