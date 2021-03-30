@@ -12,8 +12,6 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - run: apt-get install -y sudo
-      - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
       - run:
           name: Setup dependencies
           command: |
@@ -24,6 +22,8 @@ jobs:
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
              chmod +x ./cc-test-reporter
+      - run: apt-get install -y sudo
+      - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
       - run:
           name: Run tests
           command: |
@@ -45,5 +45,5 @@ jobs:
 workflows:
   main:
     jobs:
-      - build
       - build-and-test
+      - build
