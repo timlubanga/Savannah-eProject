@@ -16,9 +16,8 @@ jobs:
       - python/install-deps
       - python/save-
       - run:
-        name: install pip
-        command: |
-        sudo apt install -y python-pip python-dev
+          name: install pip
+          command: sudo apt install -y python-pip python-dev
       - run:
           command: ./manage.py test
           name: Test
