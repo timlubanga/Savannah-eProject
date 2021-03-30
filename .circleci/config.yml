@@ -12,6 +12,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: apt-get install -y sudo
+      - run: ls -al /bin/sh && sudo rm /bin/sh && sudo ln -s /bin/bash /bin/sh && ls -al /bin/sh
       - run:
           name: Setup dependencies
           command: |
@@ -25,9 +27,9 @@ jobs:
       - run:
           name: Run tests
           command: |
-            docker-php-ext-enable xdebug
+            sudo docker-php-ext-enable xdebug
             ./cc-test-reporter before-build
-            vendor/bin/phpunit --coverage-clover clover.xml
+            sudo vendor/bin/phpunit --coverage-clover clover.xml
             ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
   build-and-test:
     executor: python/default
