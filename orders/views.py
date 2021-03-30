@@ -22,7 +22,7 @@ class CustomerViewSet(ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 
-class UpdateCustomerPhoneNumberView(generics.GenericAPIView):
+class RetrieveandUpdateCustomerView(generics.GenericAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = [IsAuthenticated]
@@ -37,7 +37,8 @@ class UpdateCustomerPhoneNumberView(generics.GenericAPIView):
     def patch(self, request):
         customer = request.user.customer
         data = request.data
-        serializer = CustomerSerializer(customer, data=data, partial=True)
+        serializer = CustomerSerializer(customer, data=data, partial=True, context={
+                                        "method": request.method})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

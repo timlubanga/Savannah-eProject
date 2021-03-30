@@ -5,7 +5,7 @@ from django.urls import reverse
 class BaseTestSetup(APITestCase):
     def setUp(self):
         self.loginUrl = reverse('emaillogin')
-        self.signupUrl = reverse("emailregister")\
+        self.signupUrl = reverse("emailregister")
 
         self.userData = {
             "email": "test1@gmail.com",

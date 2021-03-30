@@ -1,4 +1,4 @@
-from orders.views import CustomerViewSet, OrderCreateandListView, OrderDetailsDeleteView, UpdateCustomerPhoneNumberView
+from orders.views import CustomerViewSet, OrderCreateandListView, OrderDetailsDeleteView, RetrieveandUpdateCustomerView
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 
@@ -8,10 +8,12 @@ urlcustomers = router.urls
 
 
 urlsorder = [
-    path('createlist/', OrderCreateandListView.as_view()),
-    path('retrievedelete/', OrderDetailsDeleteView.as_view())
+    path('createlist/', OrderCreateandListView.as_view(),
+         name="createandlistorders"),
+    path('retrievedelete/', OrderDetailsDeleteView.as_view(),
+         name="retrieveanddeleteorders")
 ]
 
 
 urlscustomerupdate = [
-    path('Me/', UpdateCustomerPhoneNumberView.as_view())]
+    path('Me/', RetrieveandUpdateCustomerView.as_view(), name="customerDetails")]
