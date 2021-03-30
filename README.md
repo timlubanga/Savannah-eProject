@@ -1,7 +1,5 @@
 # Installation Steps
 
----
-
 1. Ensure you have python3 installed
 
 2. Clone the repository
@@ -10,12 +8,13 @@
 
 4. Activate the virtual environment by running source venv/bin/activate
 
-5. On Windows use source venv\Scripts\activate
-6. Install the dependencies using pip install -r requirements.txt
+- On Windows use source venv\Scripts\activate
 
-7. Migrate existing db tables by running python manage.py migrate
+5. Install the dependencies using pip install -r requirements.txt
 
-8. Run the django development server using python manage.py runserver
+6. Migrate existing db tables by running python manage.py migrate
+
+7. Run the django development server using python manage.py runserver
 
 # Testing
 
