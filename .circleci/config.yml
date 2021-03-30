@@ -1,10 +1,9 @@
 version: 2.1
-
 orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build-and-test:
+  build:
     environment:
       CC_TEST_REPORTER_ID: 4d80a81a5bebd0ce7683a8e47bd35a593aafa46726b09456ebca2f99b44d4d0d
     docker:
@@ -26,12 +25,13 @@ jobs:
             composer install -n --prefer-dist
       - run:
           name: Setup Code Climate test-reporter
-          command:
+          command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
       - run:
           name: Run tests
-          command: sudo docker-php-ext-enable xdebug
+          command: |
+            sudo docker-php-ext-enable xdebug
             ./cc-test-reporter before-build
             sudo vendor/bin/phpunit --coverage-clover clover.xml
             ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
