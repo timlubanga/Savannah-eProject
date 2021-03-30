@@ -19,11 +19,12 @@ class CustomerSerializer(serializers.ModelSerializer):
         instance.phone_number = validated_data.get(
             'phone_number', instance.phone_number)
         instance.save()
-        print(instance)
         return instance
 
 
 class OrderSerializer(serializers.ModelSerializer):
+    customer = serializers.StringRelatedField()
+
     class Meta:
         model = Order
-        fields = ['item', "quantity"]
+        fields = ['item', "quantity", "customer", "id"]

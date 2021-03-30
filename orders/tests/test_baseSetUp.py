@@ -14,11 +14,25 @@ class OrderBaseTestCase(APITestCase):
             "password": "1234567",
             "confirm_password": "1234567"
         }
+
+        self.order = {
+            "item": "milk",
+            "quantity": 20
+        }
+
+        self.orderwrongDataType = {
+            "item": False,
+            "quantity": "three"
+        }
+        self.orderdataempty = {
+
+        }
         self.data = {"phone_number": "123456789"}
         self.datacustomerid = {"customer_id": "122334555666"}
         self.dataBlank = {}
         self.createlistUrl = reverse("createandlistorders")
-        self.retrievedeleteUrl = reverse("retrieveanddeleteorders")
+        self.retrievedeleteUrl = reverse(
+            "retrieveanddeleteorders", kwargs={"pk": 1})
         self.customerDetail = reverse("customerDetails")
         self.signupUrl = reverse("emailregister")
         self.res = self.client.post(
@@ -32,4 +46,6 @@ class OrderBaseTestCase(APITestCase):
 
     def test_urls(self):
         self.assertEqual(self.createlistUrl, "/orders/createlist/")
-        self.assertEqual(self.retrievedeleteUrl, "/orders/retrievedelete/")
+        self.assertEqual(self.retrievedeleteUrl,
+                         "/orders/retrievedelete/1/")
+        print(self.retrievedeleteUrl)

@@ -10,7 +10,7 @@ urlcustomers = router.urls
 urlsorder = [
     path('createlist/', OrderCreateandListView.as_view(),
          name="createandlistorders"),
-    path('retrievedelete/', OrderDetailsDeleteView.as_view(),
+    path('retrievedelete/<int:pk>/', OrderDetailsDeleteView.as_view(),
          name="retrieveanddeleteorders")
 ]
 

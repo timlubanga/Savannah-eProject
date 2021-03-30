@@ -17,10 +17,11 @@ class Customer(models.Model):
                                    default=uuid.uuid4(),
                                    unique=True,
                                    editable=False)
-    phone_number = models.CharField(max_length=300, null=True, blank=True, default="+254714568338")
+    phone_number = models.CharField(
+        max_length=300, null=True, blank=True, default="+254714568338")
 
     def __str__(self):
-        return self.account.email + "---" + str(self.customer_id)
+        return self.account.email
 
 
 class Order(models.Model):
@@ -37,4 +38,5 @@ class Order(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         if instance.customer.phone_number:
-            twilioSms(instance)
+            pass
+            # twilioSms(instance)
