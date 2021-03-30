@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/circleci/Savannah-eProject.svg?style=shield&circle-token=2bd74d82daa65bc8b3f928fe355752dac19a0ff9)](https://circleci.com/gh/circleci/circleci-docs)
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield&circle-token=2bd74d82daa65bc8b3f928fe355752dac19a0ff9)](https://circleci.com/gh/circleci/circleci-docs)
 
 # Installation Steps
 
