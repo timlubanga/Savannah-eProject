@@ -1,43 +1,21 @@
 version: 2.1
+
 orbs:
   python: circleci/python@0.2.1
 
 jobs:
-  build:
-    environment:
-      CC_TEST_REPORTER_ID: 4d80a81a5bebd0ce7683a8e47bd35a593aafa46726b09456ebca2f99b44d4d0d
-    docker:
-      - image: "mileschou/xdebug:7.3"
-    working_directory: ~/repo
+  build-and-test:
     executor: python/default
     steps:
       - checkout
       - python/load-cache
       - python/install-deps
-      - run:
-          name: install pip
-          command: curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+      - python/save-cache
       - run:
           command: ./manage.py test
           name: Test
-      - run:
-          name: Setup dependencies
-          command: |
-            sudo composer self-update
-            composer install -n --prefer-dist
-      - run:
-          name: Setup Code Climate test-reporter
-          command: |
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-      - run:
-          name: Run tests
-          command: |
-            sudo docker-php-ext-enable xdebug
-            ./cc-test-reporter before-build
-            sudo vendor/bin/phpunit --coverage-clover clover.xml
-            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+
 workflows:
   main:
     jobs:
-      - build
+      - build-and-test
