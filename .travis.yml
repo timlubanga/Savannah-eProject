@@ -7,7 +7,8 @@ before_install:
   - "pip install -U pip"
 install:
   - pipenv install
-  - pip install -r requirements.txt
+  - pip install -r requirements.
+env: export SECRET_KEY=" kq%#xk69bijldqz_87nn+e=_rq8=7dv#ne1pcie!m82v=tm^"
 
 script:
   - coverage run --source=. manage.py test && coverage report && coverage html
