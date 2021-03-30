@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/circleci/Savannah-eProject.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs)
+
 # Installation Steps
 
 1. Ensure you have python3 installed
