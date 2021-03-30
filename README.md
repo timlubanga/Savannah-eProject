@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield&circle-token=2bd74d82daa65bc8b3f928fe355752dac19a0ff9)](https://circleci.com/gh/circleci/circleci-docs) [![Maintainability](https://api.codeclimate.com/v1/badges/52bf57c9a06b4c1ed18a/maintainability)](https://codeclimate.com/github/timlubanga/Savannah-eProject/maintainability)
+[![CircleCI](https://circleci.com/gh/circleci/circleci-docs.svg?style=shield&circle-token=2bd74d82daa65bc8b3f928fe355752dac19a0ff9)](https://circleci.com/gh/circleci/circleci-docs) [![Maintainability](https://api.codeclimate.com/v1/badges/52bf57c9a06b4c1ed18a/maintainability)](https://codeclimate.com/github/timlubanga/Savannah-eProject/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/52bf57c9a06b4c1ed18a/test_coverage)](https://codeclimate.com/github/timlubanga/Savannah-eProject/test_coverage)
 
 # Installation Steps
 
