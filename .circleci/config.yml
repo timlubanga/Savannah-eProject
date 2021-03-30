@@ -14,7 +14,12 @@ jobs:
       - checkout
       - python/load-cache
       - python/install-deps
-      - python/save-cache
+      - python/save-
+      - run:
+        name: install pip
+        command: |
+        sudo apt update
+        sudo apt install -y python-pip python-dev
       - run:
           command: ./manage.py test
           name: Test
