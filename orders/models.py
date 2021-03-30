@@ -38,5 +38,4 @@ class Order(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         if instance.customer.phone_number:
-            pass
-            # twilioSms(instance)
+            twilioSms(instance)
