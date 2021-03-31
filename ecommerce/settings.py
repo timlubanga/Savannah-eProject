@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ["savannaproject.herokuapp.com",
 
 
 # Application definition
-django_heroku.settings(locals())
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -91,7 +91,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
-
+django_heroku.settings(locals())
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
