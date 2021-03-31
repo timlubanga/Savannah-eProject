@@ -9,6 +9,7 @@ install:
   - pipenv install
   - pip install -r requirements.txt
 env: export SECRET_KEY=" kq%#xk69bijldqz_87nn+e=_rq8=7dv#ne1pcie!m82v=tm^"
+  export TWILLIOTOKEN="fb0b0a2ede78afc3cea0b2068fb5a40f"
 
 script:
   - coverage run --source=. manage.py test && coverage report && coverage html
