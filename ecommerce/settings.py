@@ -30,7 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["6e1c6cbbc41a.ngrok.io", "localhost"]
+ALLOWED_HOSTS = ["savannaproject.herokuapp.com",
+                 "6e1c6cbbc41a.ngrok.io", "localhost"]
 
 
 # Application definition
@@ -51,15 +52,14 @@ INSTALLED_APPS = [
 ]
 
 
-
 SWAGGER_SETTINGS = {
-   'SECURITY_DEFINITIONS': {
-      'Bearer': {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
             'type': 'apiKey',
             'name': 'Authorization',
             'in': 'header'
-      }
-   }
+        }
+    }
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
