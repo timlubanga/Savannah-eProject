@@ -17,7 +17,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-django_heroku.settings(locals())
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ["savannaproject.herokuapp.com",
 
 
 # Application definition
-
+django_heroku.settings(locals())
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
