@@ -2,7 +2,7 @@
 
 # Installation Steps
 
-1. Ensure you have python3 installed
+1. Ensure you have python3 installed in your project
 
 2. Clone the repository
 
