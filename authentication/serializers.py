@@ -46,7 +46,6 @@ class EmailLoginSerializer(serializers.ModelSerializer):
 
     def save(self):
         login_username = self.validated_data.get('username', None)
-        print(login_username)
         login_password = self.validated_data.get("password", None)
         user = authenticate(username=login_username, password=login_password)
 

@@ -91,8 +91,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 if 'HEROKU' in os.environ:
+    DEBUG = False
     import django_heroku
     django_heroku.settings(locals())
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

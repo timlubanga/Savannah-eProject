@@ -18,13 +18,14 @@ def generate_username(name):
 
 def register_social_user(provider, user_id, email, name):
     filtered_user_by_email = User.objects.filter(email=email)
+    print(filtered_user_by_email)
 
     if filtered_user_by_email.exists():
         if provider == filtered_user_by_email[0].auth_provider:
 
             registered_user = authenticate(
-                email=email, password=os.environ.get('SECRET_KEY'))
-
+                email=email,  password=os.environ.get("SECRET_KEY"))
+            print(registered_user)
             return {
                 'username': registered_user.username,
                 'email': registered_user.email,
@@ -42,10 +43,10 @@ def register_social_user(provider, user_id, email, name):
         user.is_verified = True
         user.auth_provider = provider
         user = user.save()
-        createCustomer(user=user)
 
         new_user = authenticate(
             email=email, password=os.environ.get('SECRET_KEY'))
+        createCustomer(user=new_user)
         return {
             'email': new_user.email,
             'username': new_user.username,
