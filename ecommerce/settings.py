@@ -73,6 +73,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # CORS_ALLOWED_ORIGINS = [
 #     "https://example.com",
@@ -101,7 +103,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 if 'HEROKU' in os.environ:
-    
+
     import django_heroku
     django_heroku.settings(locals())
 
