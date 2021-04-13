@@ -4,9 +4,6 @@ from orders.tests.test_baseSetUp import OrderBaseTestCase
 class OrderTesCase(OrderBaseTestCase):
 
     def test_user_can_succeffully_create_orders_after_authentication(self):
-        # self.client = self.client.credentials(
-        #     HTTP_AUTHORIZATION='Bearer {token}'.format(token=self.token))
-
         response = self.client.post(
             self.createlistUrl, HTTP_AUTHORIZATION='Bearer {token}'.format(
                 token=self.token), data=self.order)
